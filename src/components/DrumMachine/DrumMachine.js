@@ -1,12 +1,14 @@
 'use client';
 import React from 'react';
 import useSound from 'use-sound';
+import { EnabledContext } from '../SoundContext';
 
 import styles from './DrumMachine.module.css';
 
 const SOUND_SRC = '/909-drums.mp3';
 
 function DrumMachine() {
+  const { soundEnabled } = React.useContext(EnabledContext);
   const [play] = useSound(SOUND_SRC, {
     sprite: {
       kick: [0, 350],
@@ -14,7 +16,7 @@ function DrumMachine() {
       snare: [666, 290],
       cowbell: [968, 200],
     },
-    soundEnabled: true,
+    soundEnabled: soundEnabled,
   });
 
   return (
